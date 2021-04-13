@@ -95,7 +95,7 @@ class DetailsViewController: UIViewController {
     
     func reloadAmount() {
         removeButton.isSelected = amount > 0
-        priceLabel.text = "\((item?.price ?? 1) * Double(amount))"
+        priceLabel.text = "$\((item?.price ?? 1) * Double(amount))"
         amountLabel.text = "\(amount >= 0 ? amount : 0)"
     }
     
@@ -103,10 +103,6 @@ class DetailsViewController: UIViewController {
         self.item = item
         
         self.title = item.name
-    }
-    
-    @IBAction func backButton(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func removeButtonTouched(_ sender: Any) {
