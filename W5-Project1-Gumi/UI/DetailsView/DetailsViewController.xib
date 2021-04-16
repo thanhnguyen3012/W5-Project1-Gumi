@@ -42,7 +42,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dTi-VM-5kY" userLabel="Content View">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="872"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_raspberry" translatesAutoresizingMaskIntoConstraints="NO" id="wf7-ic-z6q">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_apple" translatesAutoresizingMaskIntoConstraints="NO" id="wf7-ic-z6q">
                                     <rect key="frame" x="15" y="15" width="384" height="384"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="wf7-ic-z6q" secondAttribute="height" multiplier="1:1" id="9N4-fe-DPg"/>
@@ -183,7 +183,7 @@
                                                 <constraint firstAttribute="width" constant="120" id="9kt-Ka-Chr"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="28"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="textColor" name="dark_label"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aC6-lV-Xq4">
@@ -205,7 +205,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add to cart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WLG-Hh-fJ0">
                                             <rect key="frame" x="239" y="19.5" width="85" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="textColor" name="dark_label"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -307,10 +307,13 @@
     <resources>
         <image name="ic_cart" width="490" height="490"/>
         <image name="ic_tag" width="512" height="512"/>
-        <image name="img_raspberry" width="1512" height="1890"/>
+        <image name="img_apple" width="3000" height="2000"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <namedColor name="dark">
             <color red="0.13300000131130219" green="0.13300000131130219" blue="0.13300000131130219" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dark_label">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="orange">
             <color red="0.97600001096725464" green="0.77999997138977051" blue="0.42399999499320984" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -19,7 +19,7 @@ class NutritionCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = UIColor(named: "orange")
         contentView.layer.borderWidth = 2
         contentView.layer.borderColor = UIColor.white.cgColor
-        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowColor = UIColor(named: "label")?.cgColor
         layer.shadowOffset = CGSize(width: 2, height: 2)
         layer.shadowRadius = 8
         layer.shadowOpacity = 0.2

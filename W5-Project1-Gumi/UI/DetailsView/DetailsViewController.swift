@@ -34,12 +34,12 @@ class DetailsViewController: UIViewController {
     }
     
     func setupView() {
-        navigationController?.navigationBar.tintColor = .black
+        navigationController?.navigationBar.tintColor = UIColor(named: "label")
         
         priceView.layer.cornerRadius = priceView.frame.height / 2
         priceView.layer.borderWidth = 2
-        priceView.layer.borderColor = UIColor.white.cgColor
-        priceView.layer.shadowColor = UIColor.black.cgColor
+        priceView.layer.borderColor = UIColor(named: "dark_label")?.cgColor
+        priceView.layer.shadowColor = UIColor(named: "label")?.cgColor
         priceView.layer.shadowRadius = 20
         priceView.layer.shadowOffset = CGSize(width: 8, height: 8)
         priceView.layer.shadowOpacity = 0.2
@@ -49,7 +49,7 @@ class DetailsViewController: UIViewController {
         cartView.layer.borderColor = UIColor.white.cgColor
         
         amountView.layer.cornerRadius = amountView.frame.height / 2
-        amountView.layer.shadowColor = UIColor.black.cgColor
+        amountView.layer.shadowColor = UIColor(named: "label")?.cgColor
         amountView.layer.shadowRadius = 20
         amountView.layer.shadowOffset = CGSize(width: 8, height: 8)
         amountView.layer.shadowOpacity = 0.2

@@ -27,7 +27,7 @@
                             <constraint firstAttribute="height" constant="31" id="3DR-wb-RZ6"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" name="label"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price per kg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GsI-cQ-fXs">
@@ -89,7 +89,7 @@
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" name="dark_label"/>
             <constraints>
                 <constraint firstItem="GsI-cQ-fXs" firstAttribute="top" secondItem="TjL-iA-e4O" secondAttribute="bottom" constant="10" id="06Z-a8-Bo1"/>
                 <constraint firstItem="rwh-JH-Zfp" firstAttribute="centerY" secondItem="MQ0-BP-dFF" secondAttribute="centerY" id="CGK-U5-HEq"/>
@@ -127,6 +127,12 @@
         <image name="cart.badge.plus" catalog="system" width="128" height="106"/>
         <image name="heart" catalog="system" width="128" height="109"/>
         <image name="img_papaya" width="1606.5" height="2409.5"/>
+        <namedColor name="dark_label">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="label">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="main_green">
             <color red="0.31799998879432678" green="0.72200000286102295" blue="0.1289999932050705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
