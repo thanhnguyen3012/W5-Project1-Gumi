@@ -107,7 +107,7 @@
 		848266832623E902003BEB8C /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
-				84D2D647262D32BD006AB37F /* Part */,
+				84D2D647262D32BD006AB37F /* Parts */,
 				8482668C2623EC02003BEB8C /* HomeViewController.swift */,
 				8482668D2623EC02003BEB8C /* HomeViewController.xib */,
 			);
@@ -133,7 +133,7 @@
 		848266982623F2EE003BEB8C /* DetailsView */ = {
 			isa = PBXGroup;
 			children = (
-				84D2D646262D32B4006AB37F /* Part */,
+				84D2D646262D32B4006AB37F /* Parts */,
 				8482669A2623F30C003BEB8C /* DetailsViewController.swift */,
 				8482669B2623F30C003BEB8C /* DetailsViewController.xib */,
 			);
@@ -157,21 +157,21 @@
 			path = CustomCollectionViewFlowLayout;
 			sourceTree = "<group>";
 		};
-		84D2D646262D32B4006AB37F /* Part */ = {
+		84D2D646262D32B4006AB37F /* Parts */ = {
 			isa = PBXGroup;
 			children = (
 				8476A18426244E5B00F24DD3 /* NutritionCollectionViewCell */,
 			);
-			path = Part;
+			path = Parts;
 			sourceTree = "<group>";
 		};
-		84D2D647262D32BD006AB37F /* Part */ = {
+		84D2D647262D32BD006AB37F /* Parts */ = {
 			isa = PBXGroup;
 			children = (
 				848266AA26240C2C003BEB8C /* CustomCollectionViewFlowLayout */,
 				848266A12623FACF003BEB8C /* ItemCollectionViewCell */,
 			);
-			path = Part;
+			path = Parts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
