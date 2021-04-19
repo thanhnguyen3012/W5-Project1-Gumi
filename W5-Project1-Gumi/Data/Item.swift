@@ -8,13 +8,13 @@
 import UIKit
 
 class Item {
-    var image: UIImage?
-    var name: String?
-    var price: Double?
-    var rating: Double?
+    var image: UIImage
+    var name: String
+    var price: Double
+    var rating: Double
     var isLoved = false
-    var description: String?
-    var nutrition: [String]?
+    var description: String
+    var nutrition = [String]()
     
     init(image: UIImage, name: String, price: Double, rating: Double, description: String, nutrition: [String]) {
         self.image = image

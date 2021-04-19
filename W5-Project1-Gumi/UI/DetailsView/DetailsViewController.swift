@@ -67,7 +67,7 @@ class DetailsViewController: UIViewController {
         nameLabel.text = item?.name
         ratingLabel.text = "\(item?.rating ?? 0.0)"
         for i in 0..<5 {
-            startsRatingButton[i].tintColor = i < Int((item?.rating! ?? 0) / 2) ? UIColor(named: "orange")! : UIColor.systemGray2
+            startsRatingButton[i].tintColor = i < Int(item?.rating ?? 0 / 2) ? UIColor(named: "orange")! : UIColor.systemGray2
             startsRatingButton[i].isSelected = false
         }
         descriptionTextView.text = item?.description
@@ -118,20 +118,19 @@ class DetailsViewController: UIViewController {
 
 extension DetailsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(item?.nutrition?.count ?? 0)
-        return item?.nutrition?.count ?? 0
+        return item?.nutrition.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NutritionCollectionViewCell.identifier, for: indexPath) as! NutritionCollectionViewCell
-        cell.bindData(nutri: item?.nutrition?[indexPath.row] ?? "")
+        cell.bindData(nutri: item?.nutrition[indexPath.row] ?? "")
         return cell
     }
 }
 
 extension DetailsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = item?.nutrition?[indexPath.row].size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .regular)])
+        let size = item?.nutrition[indexPath.row].size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .regular)])
         return CGSize(width: (size?.width ?? 100) + 50, height: 40)
     }
 }

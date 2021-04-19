@@ -115,7 +115,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 extension HomeViewController: CustomCollectionViewLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
        let width = (collectionView.frame.width - 45) / 2
-       return (listOfItem[indexPath.row].image!.size.height / listOfItem[indexPath.row].image!.size.width) * width + 122
+       return (listOfItem[indexPath.row].image.size.height / listOfItem[indexPath.row].image.size.width) * width + 122
     }
 }
 
@@ -124,7 +124,7 @@ extension HomeViewController: UISearchBarDelegate {
         let key = searchBar.text ?? ""
         listOfItem.removeAll()
         for item in originalListOfItem {
-            if item.name?.uppercased().contains(key.uppercased()) ?? false {
+            if item.name.uppercased().contains(key.uppercased()) {
                 listOfItem.append(item)
             }
         }

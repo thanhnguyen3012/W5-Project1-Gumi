@@ -51,9 +51,9 @@ class ItemCollectionViewCell: UICollectionViewCell {
         likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
         likeButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)
         nameLabel.text = item.name
-        priceLabel.text = "$\(item.price ?? 0.0)"
+        priceLabel.text = "$\(item.price)"
         priceLabel.sizeToFit()
-        rawPriceLabel.text = "$\(NSString(format: "%.2f", (item.price ?? 0.0) * 1.1))"
+        rawPriceLabel.text = "$\(NSString(format: "%.2f", item.price * 1.1))"
         rawPriceLabel.sizeToFit()
         
     }
