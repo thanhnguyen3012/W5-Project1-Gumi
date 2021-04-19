@@ -22,6 +22,8 @@
 		848266A52623FAF3003BEB8C /* ItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 848266A32623FAF3003BEB8C /* ItemCollectionViewCell.xib */; };
 		848266A82623FB98003BEB8C /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848266A72623FB98003BEB8C /* Item.swift */; };
 		848266AC26240C46003BEB8C /* CustomCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848266AB26240C46003BEB8C /* CustomCollectionViewFlowLayout.swift */; };
+		84CD8C52262D717400BB277D /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CD8C51262D717400BB277D /* HomeViewModel.swift */; };
+		84CD8C55262D86DE00BB277D /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CD8C54262D86DE00BB277D /* DetailsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		848266A32623FAF3003BEB8C /* ItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		848266A72623FB98003BEB8C /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		848266AB26240C46003BEB8C /* CustomCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		84CD8C51262D717400BB277D /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		84CD8C54262D86DE00BB277D /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,8 +112,9 @@
 			isa = PBXGroup;
 			children = (
 				84D2D647262D32BD006AB37F /* Parts */,
-				8482668C2623EC02003BEB8C /* HomeViewController.swift */,
 				8482668D2623EC02003BEB8C /* HomeViewController.xib */,
+				8482668C2623EC02003BEB8C /* HomeViewController.swift */,
+				84CD8C51262D717400BB277D /* HomeViewModel.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -134,8 +139,9 @@
 			isa = PBXGroup;
 			children = (
 				84D2D646262D32B4006AB37F /* Parts */,
-				8482669A2623F30C003BEB8C /* DetailsViewController.swift */,
 				8482669B2623F30C003BEB8C /* DetailsViewController.xib */,
+				8482669A2623F30C003BEB8C /* DetailsViewController.swift */,
+				84CD8C54262D86DE00BB277D /* DetailsViewModel.swift */,
 			);
 			path = DetailsView;
 			sourceTree = "<group>";
@@ -250,9 +256,11 @@
 				8476A18726244E8200F24DD3 /* NutritionCollectionViewCell.swift in Sources */,
 				848266A82623FB98003BEB8C /* Item.swift in Sources */,
 				848266952623ED95003BEB8C /* UIViewController+LoadFromNibName.swift in Sources */,
+				84CD8C52262D717400BB277D /* HomeViewModel.swift in Sources */,
 				8482666C2623E89B003BEB8C /* AppDelegate.swift in Sources */,
 				8482666E2623E89B003BEB8C /* SceneDelegate.swift in Sources */,
 				848266A42623FAF3003BEB8C /* ItemCollectionViewCell.swift in Sources */,
+				84CD8C55262D86DE00BB277D /* DetailsViewModel.swift in Sources */,
 				8482668E2623EC02003BEB8C /* HomeViewController.swift in Sources */,
 				8482669C2623F30C003BEB8C /* DetailsViewController.swift in Sources */,
 				848266AC26240C46003BEB8C /* CustomCollectionViewFlowLayout.swift in Sources */,

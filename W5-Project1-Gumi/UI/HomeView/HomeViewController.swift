@@ -11,21 +11,7 @@ class HomeViewController: UIViewController {
 
     @IBOutlet weak var itemCollectionView: UICollectionView!
     
-    let originalListOfItem = [Item(image: UIImage(named: "img_blue-berry")!, name: "Blue berry", price: 9.6, rating: 3.4, description: "There is description of blueberry.", nutrition: ["Vitamin C", "Vitamin A", "Mineral", "Fiber"]),
-                            Item(image: UIImage(named: "img_papaya")!, name: "Papaya", price: 6.8, rating: 6.8, description: "There is description of papaya.", nutrition: ["Vitamin C", "Vitamin A", "Mineral", "Fiber"]),
-                            Item(image: UIImage(named: "img_avocado")!, name: "Avocado", price: 11.7, rating: 7.2, description: "There is description of avocado.", nutrition: ["Vitamin C", "Vitamin A", "Mineral", "Fiber"]),
-                            Item(image: UIImage(named: "img_banana")!, name: "Banana", price: 15.4, rating: 6.3, description: "There is description of banana.", nutrition: ["Vitamin C", "Vitamin A", "Mineral", "Fiber"]),
-                            Item(image: UIImage(named: "img_raspberry")!, name: "Raspberry", price: 7.15, rating: 8.3, description: "There is description of raspberry.", nutrition: ["Vitamin C", "Vitamin A", "Mineral", "Fiber"]),
-                            Item(image: UIImage(named: "img_pineapple")!, name: "Pineapple", price: 7.4, rating: 8.8, description: "There is description of pineapple.", nutrition: ["Vitamin C", "Vitamin A", "Mineral", "Fiber"]),
-                            Item(image: UIImage(named: "img_cherry")!, name: "Cherry", price: 7.8, rating: 5.5, description: "There is description of cherry.", nutrition: ["Vitamin C", "Vitamin A", "Mineral", "Fiber"]),
-                            Item(image: UIImage(named: "img_strawberry")!, name: "Strawberry", price: 15.75, rating: 7.7, description: "There is description of strawberry.", nutrition: ["Vitamin C", "Vitamin A", "Mineral", "Fiber"]),
-                            Item(image: UIImage(named: "img_coconut")!, name: "Coconut", price: 8.9, rating: 3.7, description: "There is description of coconut.", nutrition: ["Vitamin C", "Vitamin A", "Mineral", "Fiber"]),
-                            Item(image: UIImage(named: "img_melon")!, name: "Melon", price: 4.2, rating: 5.7, description: "There is description of melon.", nutrition: ["Vitamin C", "Vitamin A", "Mineral", "Fiber"]),
-                            Item(image: UIImage(named: "img_lemon")!, name: "Lemon", price: 1.0, rating: 2.9, description: "There is description of melon.", nutrition: ["Vitamin C", "Vitamin A", "Mineral", "Fiber"]),
-                            Item(image: UIImage(named: "img_apple")!, name: "Apple", price: 13.6, rating: 8.7, description: "There is description of apple.", nutrition: ["Vitamin C", "Vitamin A", "Mineral", "Fiber"]),
-                            Item(image: UIImage(named: "img_tangerine")!, name: "Tangerine", price: 10.4, rating: 4.9, description: "There is description of tangerine.", nutrition: ["Vitamin C", "Vitamin A", "Mineral", "Fiber"]),
-                            Item(image: UIImage(named: "img_pomegranate")!, name: "Pomegranate", price: 3.4, rating: 2.1, description: "There is description of pomegranate.", nutrition: ["Vitamin C", "Vitamin A", "Mineral", "Fiber"])]
-    var listOfItem = [Item]()
+    lazy var viewModel = HomeViewModel(delegate: self)
     
     let searchBar = UISearchBar()
     
@@ -36,8 +22,6 @@ class HomeViewController: UIViewController {
     
     func setupView() {
         title = "Fruits"
-        
-        listOfItem = originalListOfItem
         
         itemCollectionView.register(ItemCollectionViewCell.nib, forCellWithReuseIdentifier: ItemCollectionViewCell.identifier)
         itemCollectionView.delegate = self
@@ -53,8 +37,9 @@ class HomeViewController: UIViewController {
         navigationItem.rightBarButtonItem = searchButton
         navigationController?.navigationBar.tintColor = UIColor(named: "label")
         
-        
         self.itemCollectionView.keyboardDismissMode = .onDrag
+        
+        viewModel.showOriginalList()
     }
     
     @objc func searchTouched(sender: UIBarButtonItem) {
@@ -65,7 +50,7 @@ class HomeViewController: UIViewController {
             navigationItem.titleView = searchBar
             searchBar.sizeToFit()
         } else {
-            listOfItem = originalListOfItem
+            viewModel.showOriginalList()
             itemCollectionView.reloadData()
             sender.image = UIImage.init(systemName: "magnifyingglass")
             sender.title = nil
@@ -79,22 +64,29 @@ class HomeViewController: UIViewController {
     }
 }
 
+extension HomeViewController: HomeViewModelEvents{
+    func reloadCollection() {
+        itemCollectionView.reloadData()
+    }
+}
+
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = DetailsViewController(nibName: "DetailsViewController", bundle: nil)
-        vc.bindData(item: listOfItem[indexPath.row])
+        vc.bindData(item: viewModel.listOfItem[indexPath.row])
         navigationController?.pushViewController(vc, animated: true)
     }
 }
 
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        listOfItem.count
+        viewModel.listOfItem.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ItemCollectionViewCell.identifier, for: indexPath) as! ItemCollectionViewCell
-        cell.setupView(item: listOfItem[indexPath.row])
+        cell.setupView(item: viewModel.listOfItem[indexPath.row])
+        cell.delegate = self
         return cell
     }
 }
@@ -112,22 +104,24 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+extension HomeViewController: ItemCollectionViewCellDelegate {
+    func itemCollectionViewCell(_ itemCollectionViewCell: ItemCollectionViewCell, likeAction: Bool) {
+        let index = itemCollectionView.indexPath(for: itemCollectionViewCell)
+        viewModel.changeLoveStateAt(index!.row)
+    }
+}
+
 extension HomeViewController: CustomCollectionViewLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
        let width = (collectionView.frame.width - 45) / 2
-       return (listOfItem[indexPath.row].image.size.height / listOfItem[indexPath.row].image.size.width) * width + 122
+        return (viewModel.listOfItem[indexPath.row].image.size.height / viewModel.listOfItem[indexPath.row].image.size.width) * width + 122
     }
 }
 
 extension HomeViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let key = searchBar.text ?? ""
-        listOfItem.removeAll()
-        for item in originalListOfItem {
-            if item.name.uppercased().contains(key.uppercased()) {
-                listOfItem.append(item)
-            }
-        }
-        itemCollectionView.reloadData()
+        viewModel.search(keyWord: key)
     }
 }
+
