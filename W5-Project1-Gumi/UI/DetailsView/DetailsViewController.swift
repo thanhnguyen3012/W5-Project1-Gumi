@@ -23,9 +23,7 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var cartView: UIView!
     
-    
-    var item: Item?
-    var amount = 1
+    lazy var viewModel = DetailsViewModel(delegate: self)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,20 +57,20 @@ class DetailsViewController: UIViewController {
         nutritionCollectionView.register(NutritionCollectionViewCell.nib, forCellWithReuseIdentifier: NutritionCollectionViewCell.identifier)
         nutritionCollectionView.reloadData()
         
-        thumbnailImageView.image = item?.image
+        thumbnailImageView.image = viewModel.item?.image
         thumbnailImageView.layer.cornerRadius = priceView.layer.cornerRadius
         thumbnailImageView.layer.borderWidth = 3
         thumbnailImageView.layer.borderColor = UIColor.white.cgColor
         
-        nameLabel.text = item?.name
-        ratingLabel.text = "\(item?.rating ?? 0.0)"
+        nameLabel.text = viewModel.item?.name
+        ratingLabel.text = "\(viewModel.item?.rating ?? 0.0)"
         for i in 0..<5 {
-            startsRatingButton[i].tintColor = i < Int(item?.rating ?? 0 / 2) ? UIColor(named: "orange")! : UIColor.systemGray2
+            startsRatingButton[i].tintColor = i < Int(viewModel.item?.rating ?? 0 / 2) ? UIColor(named: "orange")! : UIColor.systemGray2
             startsRatingButton[i].isSelected = false
         }
-        descriptionTextView.text = item?.description
-        amountLabel.text = "\(amount)"
-        priceLabel.text = "$\(item?.price ?? 0.0)"
+        descriptionTextView.text = viewModel.item?.description
+        amountLabel.text = "\(viewModel.amount)"
+        priceLabel.text = "$\(viewModel.item?.price ?? 0.0)"
         
         descriptionTextView.translatesAutoresizingMaskIntoConstraints = true
         descriptionTextView.sizeToFit()
@@ -93,44 +91,44 @@ class DetailsViewController: UIViewController {
         addButton.layer.mask = maskLayerAddButton
     }
     
-    func reloadAmount() {
-        removeButton.isSelected = amount > 0
-        priceLabel.text = "$\((item?.price ?? 1) * Double(amount))"
-        amountLabel.text = "\(amount >= 0 ? amount : 0)"
-    }
     
     func bindData(item: Item) {
-        self.item = item
-        
+        viewModel.item = item
         self.title = item.name
     }
     
     @IBAction func removeButtonTouched(_ sender: Any) {
-        amount -= amount > 0 ? 1 : 0
-        reloadAmount()
+        viewModel.removeAnItem()
     }
     
     @IBAction func addButtonTouched(_ sender: Any) {
-        amount += 1
-        reloadAmount()
+        viewModel.addAnButton()
     }
 }
 
 extension DetailsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return item?.nutrition.count ?? 0
+        return viewModel.item?.nutrition.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NutritionCollectionViewCell.identifier, for: indexPath) as! NutritionCollectionViewCell
-        cell.bindData(nutri: item?.nutrition[indexPath.row] ?? "")
+        cell.bindData(nutri: viewModel.item?.nutrition[indexPath.row] ?? "")
         return cell
     }
 }
 
 extension DetailsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = item?.nutrition[indexPath.row].size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .regular)])
+        let size = viewModel.item?.nutrition[indexPath.row].size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .regular)])
         return CGSize(width: (size?.width ?? 100) + 50, height: 40)
+    }
+}
+
+extension DetailsViewController: DetailsViewModelEvents {
+    func reloadAmount() {
+        removeButton.isSelected = viewModel.amount > 0
+        priceLabel.text = "$\((viewModel.item?.price ?? 1) * Double(viewModel.amount))"
+        amountLabel.text = "\(viewModel.amount >= 0 ? viewModel.amount : 0)"
     }
 }

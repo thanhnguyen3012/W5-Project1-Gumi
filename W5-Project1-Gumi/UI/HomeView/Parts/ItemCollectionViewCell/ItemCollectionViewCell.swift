@@ -7,8 +7,11 @@
 
 import UIKit
 
+protocol ItemCollectionViewCellDelegate {
+    func itemCollectionViewCell(_ itemCollectionViewCell: ItemCollectionViewCell, likeAction: Bool)
+}
+
 class ItemCollectionViewCell: UICollectionViewCell {
-    
     
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var likeButton: UIButton!
@@ -18,6 +21,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var addToCartButton: UIButton!
     
     var item: Item?
+    var delegate: ItemCollectionViewCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -50,12 +54,12 @@ class ItemCollectionViewCell: UICollectionViewCell {
         image.image = item.image
         likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
         likeButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)
+        likeButton.isSelected = item.isLoved
         nameLabel.text = item.name
         priceLabel.text = "$\(item.price)"
         priceLabel.sizeToFit()
         rawPriceLabel.text = "$\(NSString(format: "%.2f", item.price * 1.1))"
         rawPriceLabel.sizeToFit()
-        
     }
     
     static var identifier: String {
@@ -68,5 +72,6 @@ class ItemCollectionViewCell: UICollectionViewCell {
 
     @IBAction func likeButtonTouched(_ sender: Any) {
         likeButton.isSelected = !likeButton.isSelected
+        delegate?.itemCollectionViewCell(self, likeAction: !likeButton.isSelected)
     }
 }
