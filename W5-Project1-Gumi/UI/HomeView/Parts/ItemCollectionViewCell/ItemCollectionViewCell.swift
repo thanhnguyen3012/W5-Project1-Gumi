@@ -20,7 +20,6 @@ class ItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var rawPriceLabel: UILabel!
     @IBOutlet weak var addToCartButton: UIButton!
     
-    var item: Item?
     var delegate: ItemCollectionViewCellDelegate?
 
     override func awakeFromNib() {
@@ -49,8 +48,6 @@ class ItemCollectionViewCell: UICollectionViewCell {
     }
     
     func setupView(item: Item) {
-        self.item = item
-        
         image.image = item.image
         likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
         likeButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)
