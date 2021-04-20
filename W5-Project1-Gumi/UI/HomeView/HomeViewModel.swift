@@ -51,9 +51,9 @@ class HomeViewModel {
         delegate?.reloadCollection()
     }
     
-    func changeLoveStateAt(_ index: Int){
-        if index < listOfItem.count {
-            listOfItem[index].isLoved = !listOfItem[index].isLoved
+    func changeLoveStateAt(_ index: Int?){
+        if let i = index,  i < listOfItem.count {
+            listOfItem[i].isLoved = !listOfItem[i].isLoved
         }
     }
 }

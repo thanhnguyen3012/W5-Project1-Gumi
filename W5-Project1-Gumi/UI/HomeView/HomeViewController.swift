@@ -107,7 +107,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 extension HomeViewController: ItemCollectionViewCellDelegate {
     func itemCollectionViewCell(_ itemCollectionViewCell: ItemCollectionViewCell, likeAction: Bool) {
         let index = itemCollectionView.indexPath(for: itemCollectionViewCell)
-        viewModel.changeLoveStateAt(index!.row)
+        viewModel.changeLoveStateAt(index?.row)
     }
 }
 
